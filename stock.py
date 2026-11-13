@@ -6,12 +6,18 @@ from pathlib import Path
 
 
 def calculer_statistiques(articles):
-    # Chaque article est (nom, quantite, prix_unitaire).
-    # La quantite est un int ; le prix est un Decimal.
-    # TODO : calculer les cinq indicateurs demandes dans la fiche TP.
     # Renvoyer un dictionnaire avec ces cles :
     # references, unites, valeur, faibles, ruptures.
-    raise NotImplementedError("Completez calculer_statistiques.")
+    dict={"references":0, "unites":0, "valeur" : 0,"faibles":0, "ruptures":0}
+    dict["references"] = len(articles)
+    for article in articles:
+        dict["unites"]+=article.quantite
+        dict["valeur"]+=article.prix_unitaire
+        if article.quantite<=5 :
+            dict["faibles"]+=1
+            if article.quantite ==0 :
+                dict["ruptures"]+=1
+    return dict
 
 
 def lire_articles(source):
