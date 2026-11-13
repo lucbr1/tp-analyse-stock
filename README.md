@@ -15,12 +15,21 @@ Et enfin au démarrage on exécute le script en utilisant python3 avec la comman
 ## Execution avec montages
 docker volume create stock-rapport
 
-docker run --rm -v "${PWD}/entrees:/entrees:ro" -v "${PWD}/resultats:/resultats" analyse-stock:v1
+docker run --rm -v "$(pwd)/entrees:/entrees:ro" -v stock-rapport:/resultats analyse-stock:v1
 
 On monte le dossier "entrees" avec celui présent sur notre machine locale. Ce dossier se trouve dans le dossier où les commandes sont exécutés. Et on monte le dossier "resultat" au volume nommé créé précedemment ("stock-rapport").
 
 ## Tests et resultats
-Renvoyer vers preuves/verification.md et decrire le resultat attendu.
+Voir verification.md
 
 ## Reproduction apres git clone
-Donner les etapes exactes, notamment la creation de resultats.
+
+Construire l'image analyse-stock en se plaçant dans le dossier du DockerFile: `docker build -t analyse-stock:v1 .`
+
+Création du volume nommé pour stocker les résultats : `docker volume create stock-rapport`
+
+Création et exécution du conteneur :
+
+ - avec suppression immédiate : `docker run --rm -v "$(pwd)/entrees:/entrees:ro" -v stock-rapport:/resultats analyse-stock:v1`
+
+ - sans suppression immédiate : `docker run -v "$(pwd)/entrees:/entrees:ro" -v stock-rapport:/resultats --name analyse-stock analyse-stock:v1`
