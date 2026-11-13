@@ -1,13 +1,23 @@
 # Analyse de stock avec Docker
 
 ## Auteurs
-A completer.
+Lucas Brun & Lucas Bieszczad
 
 ## Construction
-Indiquer votre commande et expliquer votre Dockerfile.
+docker build -t analyse-stock:v1 .
+
+On utilise la base ubuntu:24.04 avec le FROM.
+Puis avec la commande RUN on installe python3.
+On se place ensuite dans le répertoire de travail /app avec le WORKDIR.
+Puis on copie le script python "stock.py" avec COPY.
+Et enfin au démarrage on exécute le script en utilisant python3 avec la commande CMD.
 
 ## Execution avec montages
-Donner les commandes pour votre terminal et expliquer les chemins.
+docker volume create stock-rapport
+
+docker run --rm -v "${PWD}/entrees:/entrees:ro" -v "${PWD}/resultats:/resultats" analyse-stock:v1
+
+On monte le dossier "entrees" avec celui présent sur notre machine locale. Ce dossier se trouve dans le dossier où les commandes sont exécutés. Et on monte le dossier "resultat" au volume nommé créé précedemment ("stock-rapport").
 
 ## Tests et resultats
 Renvoyer vers preuves/verification.md et decrire le resultat attendu.
