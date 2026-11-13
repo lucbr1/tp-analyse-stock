@@ -28,11 +28,13 @@ Comme on lit directement le fichier local, les valeurs ont été modifiées sans
 
 3. Tentative d'ecriture dans entrees en lecture seule.
 
+docker run --rm -v "${PWD}/entrees:/entrees:ro" -v stock-rapport:/resultats analyse-stock:v1 bash -c "touch /entrees/test.txt"
 
 
 4. Rapport relu depuis un autre conteneur avec le meme volume nomme.
 
 
+docker run --rm -v stock-rapport:/resultats analyse-stock:v1 cat /resultats/bilan-stock.txt
 
 5. Entree absente, vide ou invalide.
 
