@@ -11,11 +11,12 @@ def calculer_statistiques(articles):
     dict={"references":0, "unites":0, "valeur" : 0,"faibles":0, "ruptures":0}
     dict["references"] = len(articles)
     for article in articles:
-        dict["unites"]+=article[1]
-        dict["valeur"]+=article[2]
-        if article[1]<=5 :
+        quantite, prix =article[1], article[2]
+        dict["unites"]+=quantite
+        dict["valeur"]+=prix*quantite
+        if quantite<=5 :
             dict["faibles"]+=1
-            if article[1] ==0 :
+            if quantite ==0 :
                 dict["ruptures"]+=1
     return dict
 
