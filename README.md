@@ -33,3 +33,8 @@ Création et exécution du conteneur :
  - avec suppression immédiate : `docker run --rm -v "$(pwd)/entrees:/entrees:ro" -v stock-rapport:/resultats analyse-stock:v1`
 
  - sans suppression immédiate : `docker run -v "$(pwd)/entrees:/entrees:ro" -v stock-rapport:/resultats --name analyse-stock analyse-stock:v1`
+
+## Informations supplémentaires
+
+Le stock est faible lorsqu'il est inférieur ou égal à 5.
+Si le stock est égal à 0 il est faible et en rupture.
